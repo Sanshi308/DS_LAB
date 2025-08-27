@@ -1,3 +1,7 @@
+8) Write a program to count the total number of distinct elements in an array of
+length n.
+ans:-
+    
 #include <iostream>
 using namespace std;
 
