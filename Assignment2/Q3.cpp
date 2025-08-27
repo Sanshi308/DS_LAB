@@ -1,3 +1,9 @@
+3) Design the Logic to Find a Missing Number in a Sorted Array. Given an array of
+n-1 distinct integers in the range of 1 to n, find the missing number in it in a Sorted
+Array
+(a) Linear time
+(b) Using binary search
+ans:-
 a) linear time :-
   
 #include <iostream>
