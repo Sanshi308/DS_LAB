@@ -1,21 +1,39 @@
 4)) String Related Programs:
 ans:-
 a)Write a program to concatenate one string to another string.
-#include <stdio.h>
+ans:-
+#include <iostream>
+using namespace std;
+
 int main() {
-    char str[100];
-    int length = 0;
+    char str1[100], str2[100];
+    int i = 0, j = 0;
 
-    printf("Enter a string: ");
-    scanf("%[^\n]", str);  
+    cout << "Enter first string: ";
+    cin >> str1;
 
-    while (str[length] != '\0') {  
-        length++;
+    cout << "Enter second string: ";
+    cin >> str2;
+
+    while (str1[i] != '\0') {
+        i++;
     }
 
-    printf("Length = %d\n", length);
+
+    while (str2[j] != '\0') {
+        str1[i] = str2[j];
+        i++;
+        j++;
+    }
+
+  
+    str1[i] = '\0';
+
+    cout << "Concatenated String: " << str1 << endl;
+
     return 0;
 }
+
 
 b)Write a program to reverse a string.
 #include <stdio.h>
