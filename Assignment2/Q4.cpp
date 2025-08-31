@@ -1,4 +1,4 @@
-4) String Related Programs:
+4)) String Related Programs:
 ans:-
 a)Write a program to concatenate one string to another string.
 #include <stdio.h>
@@ -37,62 +37,67 @@ int main() {
 }
 
 c)Write a program to delete all the vowels from the string.
-#include <stdio.h>
+ans:-
+#include <iostream>
+#include <string>
+using namespace std;
+
 int main() {
-    char str1[100], str2[100];
-    int i = 0, flag = 0;
+    string str;
+    cout << "Enter a string: ";
+    getline(cin, str);   // take input string (with spaces)
 
-    printf("Enter first string: ");
-    scanf("%[^\n]", str1);
-    getchar();   
-    printf("Enter second string: ");
-    scanf("%[^\n]", str2);
-
-    while (str1[i] != '\0' || str2[i] != '\0') {
-        if (str1[i] != str2[i]) {
-            flag = 1; 
-            break;
+    string result = "";
+    for (int i = 0; i < str.length(); i++) {
+        char ch = str[i];
+        // check if character is NOT a vowel
+        if (!(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+              ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U')) {
+            result += ch;  // keep non-vowels
         }
-        i++;
     }
 
-    if (flag == 0)
-        printf("Strings are EQUAL\n");
-    else
-        printf("Strings are NOT equal\n");
-
+    cout << "String after deleting vowels: " << result << endl;
     return 0;
 }
+
 
 4)Write a program to sort the strings in alphabetical order.
-#include <stdio.h>
+ans:-
+#include <iostream>
+#include <string>
+using namespace std;
+
 int main() {
-    char str[100];
-    int i = 0, j, length = 0;
-    char temp;
+    int n;
+    cout << "Enter number of strings: ";
+    cin >> n;
 
-    printf("Enter a string: ");
-    scanf("%[^\n]", str);
-
-  
-    while (str[length] != '\0') {
-        length++;
+    string arr[100];   // array of strings
+    cout << "Enter the strings:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
     }
 
-    j = length - 1;  
-
-    while (i < j) {
-        temp = str[i];
-        str[i] = str[j];
-        str[j] = temp;
-
-        i++;
-        j--;
+    // Sorting using simple bubble sort
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (arr[i] > arr[j]) {
+                string temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
     }
 
-    printf("Reversed string = %s\n", str);
+    cout << "\nStrings in alphabetical order:\n";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << endl;
+    }
+
     return 0;
 }
+
 
 5)Write a program to convert a character from uppercase to lowercase.
 #include <stdio.h>
