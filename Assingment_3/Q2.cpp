@@ -1,8 +1,8 @@
-Given a string, reverse it using STACK. For example “DataStructure” should be output as
-“erutcurtSataD.”
+// Given a string, reverse it using STACK. For example “DataStructure” should be output as
+// “erutcurtSataD.”
 
-#include <iostream>
-#include <cstring>
+#include<iostream>
+#include<cstring>
 using namespace std;
 
 int main() {
