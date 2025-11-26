@@ -2,31 +2,85 @@ Q6.Implement priority queues using heaps.
 
 
 
-void heapifyMin(int arr[], int n, int i) {
-    int smallest = i;
-    int left = 2*i + 1;
-    int right = 2*i + 2;
+#include <iostream>
+using namespace std;
 
-    if (left < n && arr[left] < arr[smallest])
-        smallest = left;
+#define MAX 50
+int heap[MAX];
+int size = 0;
 
-    if (right < n && arr[right] < arr[smallest])
-        smallest = right;
+// Insert into heap
+void insert(int val) {
+    size++;
+    heap[size] = val;
+    int i = size;
 
-    if (smallest != i) {
-        swap(arr[i], arr[smallest]);
-        heapifyMin(arr, n, smallest);
+    // Percolate up
+    while (i > 1 && heap[i] > heap[i/2]) {
+        swap(heap[i], heap[i/2]);
+        i = i / 2;
     }
 }
 
-
-void heapSortDesc(int arr[], int n) {
-
-    for(int i = n/2 - 1; i >= 0; i--)
-        heapifyMin(arr, n, i);
-
-    for(int i = n-1; i > 0; i--) {
-        swap(arr[0], arr[i]);
-        heapifyMin(arr, i, 0);
+// Delete highest priority (root)
+int deleteMax() {
+    if (size == 0) {
+        cout << "Queue is Empty\n";
+        return -1;
     }
+
+    int root = heap[1];
+    heap[1] = heap[size];
+    size--;
+
+    // Heapify down
+    int i = 1;
+    while (i <= size/2) {
+        int left = 2*i;
+        int right = 2*i + 1;
+        int largest = i;
+
+        if (left <= size && heap[left] > heap[largest])
+            largest = left;
+
+        if (right <= size && heap[right] > heap[largest])
+            largest = right;
+
+        if (largest != i) {
+            swap(heap[i], heap[largest]);
+            i = largest;
+        }
+        else break;
+    }
+    return root;
 }
+
+// Display heap
+void display() {
+    for(int i = 1; i <= size; i++)
+        cout << heap[i] << " ";
+    cout << endl;
+}
+
+int main() {
+    int ch, val;
+
+    do {
+        cout<<"\n--- PRIORITY QUEUE MENU ---\n";
+        cout<<"1. Insert\n";
+        cout<<"2. Delete Highest Priority\n";
+        cout<<"3. Display\n";
+        cout<<"0. Exit\n";
+        cout<<"Enter choice: ";
+        cin >> ch;
+
+        switch(ch) {
+        case 1: cout<<"Enter value: "; cin >> val; insert(val); break;
+        case 2: cout<<"Deleted: "<< deleteMax() << endl; break;
+        case 3: display(); break;
+        }
+    } while(ch != 0);
+
+    return 0;
+}
+
